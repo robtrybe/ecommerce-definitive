@@ -1,0 +1,38 @@
+version: '3'
+services:
+  backend:
+    image: node:18
+    container_name: backend-container
+    working_dir: /app
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/app
+    tty: true
+    stdin_open: true
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DATABASE=ecommerce
+      - MYSQL_PORT=3306
+      - PORT=3001
+    command: bash -c "npm install && npm start"
+  db:
+    image: mysql:8
+    container_name: mysql-container
+    tty: true
+    stdin_open: true
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - 3306:3306
+  frontend:
+    image: nginx
+    container_name: front-container
+    volumes:
+      - ./frontend/build:/usr/share/nginx/html/
+    ports:
+      - 3000:80
+    tty: true
+    stdin_open: true

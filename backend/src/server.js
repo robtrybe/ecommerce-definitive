@@ -1,5 +1,5 @@
 const server = require('./app');
 
-server.listen(process.env.PORT,() => {
-    console.log(`Rodando na porta ${process.env.PORT}`);
+server.listen(process.env.MYSQLPORT,() => {
+    console.log(`Rodando na porta ${process.env.MYSQLPORT}`);
 });

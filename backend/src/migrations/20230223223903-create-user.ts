@@ -11,7 +11,7 @@ export = {
         primaryKey: true,
         autoIncrement: true,
       },
-      firstName: {
+      first_name: {
         type: STRING,
         allowNull: false,
       }

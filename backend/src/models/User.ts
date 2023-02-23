@@ -10,12 +10,13 @@ User.init({
     primaryKey: true,
     autoIncrement: true
   },
-  name: {
+  firstName: {
     type: STRING,
   }
 }, {
   sequelize: db,
-  underscored: true
+  underscored: true,
+  timestamps: false
 });
 
 export default User;

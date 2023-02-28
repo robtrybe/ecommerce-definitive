@@ -1,12 +1,19 @@
 import { Request, Response } from "express";
-import User from "../models/User";
+import IErrorMap from "../interfaces/IErrorMap";
+import UserService from "../services/UserService";
+import getError from "../utils/errorMap";
 
-//const user = new User()
-
-class UserController{
-    async create(req: Request, res: Response){
-        const user = await User.create({ firstName: 'Robson'});
-        res.json(user);
+class UserController {
+    public async register(req:Request, res: Response) {
+      const data = req.body;
+      try{
+        const result = await UserService.register(data);
+        res.status(201).json('Usuário cadastrado com sucesso!');
+      }catch(error: any) {
+        const errorMessage: string = error.message;
+        const mapError: IErrorMap = getError(errorMessage);
+        res.status(mapError.statusCode).json({ message: mapError.message});
+      }
     }
 }
 

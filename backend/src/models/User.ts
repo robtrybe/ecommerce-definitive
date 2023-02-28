@@ -1,4 +1,4 @@
-import { STRING, INTEGER } from "sequelize";
+import { STRING, INTEGER, ENUM } from "sequelize";
 import { Model } from "sequelize";
 import db from '.';
 
@@ -10,13 +10,14 @@ User.init({
     primaryKey: true,
     autoIncrement: true
   },
-  firstName: {
-    type: STRING,
-  }
+  firstName: STRING,
+  lastName: STRING,
+  email: STRING,
+  password: STRING,
+  status: ENUM('registered', 'confirmed'),
 }, {
   sequelize: db,
   underscored: true,
-  timestamps: false
 });
 
 export default User;

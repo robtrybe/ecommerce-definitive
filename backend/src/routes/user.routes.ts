@@ -6,7 +6,7 @@ const controller = new UserController();
 
 const router = express.Router();
 
-router.post('/create', controller.create.bind(UserController) );
+router.post('/', controller.register.bind(UserController) );
 
 export default router;
 
